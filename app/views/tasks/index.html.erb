@@ -1,0 +1,22 @@
+<div class="header">
+  <h1>My Tasks</h1>
+  <p><%= link_to "Add a new task", new_path %></p>
+</div>
+<% @tasks.reverse_each do |task| %>
+  <div class="task">
+    <div class="title">
+      <div class="box">
+      <% if task.completed %>
+        <i class="far fa-check-square"></i>
+      <% end %>
+      </div>
+      <h4><%= link_to task.title, task_path(task) %></h4>
+    </div>
+    <div class="edit">
+      <%= link_to "Edit", edit_path(task) %>
+      <%= link_to "Delete", destroy_path(task.id),
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>
+    </div>
+  </div>
+<% end %>
